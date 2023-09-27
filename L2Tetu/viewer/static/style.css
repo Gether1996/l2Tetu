@@ -1,0 +1,84 @@
+body {
+    background-color: #1e1a1b;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    position: relative;
+}
+
+.logo-image {
+    max-width: 400px;
+    height: auto;
+}
+
+.nav-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    margin-left: 120px;
+    position: relative;
+}
+
+.nav-button {
+    background-color: transparent;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    margin: 5px 0;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    font-size: 22px;
+    font-family: Georgia, serif;
+}
+
+.nav-button:hover {
+    transform: scale(1.2);
+    color: #573414;
+}
+
+/* Add golden lines using pseudo-elements */
+.nav-buttons::before,
+.nav-buttons::after {
+    content: "";
+    background-color: #573414; /* Golden color */
+    height: 4px; /* Line height */
+    width: 100%; /* Line width */
+    position: absolute;
+    left: 0;
+    transition: transform 0.2s ease-in-out;
+}
+
+.nav-buttons::before {
+    top: 0; /* Position the line above buttons */
+}
+
+.nav-buttons::after {
+    bottom: 0; /* Position the line below buttons */
+}
+
+/* Add hover effect for the lines */
+.nav-buttons:hover::before,
+.nav-buttons:hover::after {
+    transform: scaleX(1.2); /* Scale the lines on hover */
+}
+
+.small-logo-bottom-middle {
+    max-width: 200px; /* Adjust the size as needed */
+    height: auto;
+    position: absolute; /* Position the image */
+    bottom: 0; /* Position at the bottom */
+    left: 50%; /* Start at the horizontal center */
+    transform: translateX(-50%); /* Center horizontally */
+}
