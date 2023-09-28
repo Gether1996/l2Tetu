@@ -4,6 +4,38 @@
 
 {% block title %}Donation{% endblock %}
 
-{% block content%}
+{% block content %}
+  <h1 class="page-title">Donation</h1>
 
+  <form method="post" id="donation-form">
+    {% csrf_token %}
+
+    <!-- Input for entering the number of coins -->
+    <label for="coins">Number of Coins:</label>
+    <input type="number" name="coins" id="coins" min="1" required>
+    <br>
+
+    <!-- Input for showing the dollar cost -->
+    <label for="dollar-cost">Dollar Cost:</label>
+    <input type="text" name="dollar-cost" id="dollar-cost" readonly>
+    <br>
+
+    <a href="#" id="paypal-button" title="Pay with paypal">
+      <img src="{% static 'images/paypal-button.png' %}" alt="PayPal" style="border: none;" width="100">
+    </a>
+  </form>
+
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('#coins').on('input', function () {
+        var coins = $(this).val();
+        var dollarCost = coins / 10; // Assuming 10 coins = $1
+
+        // Update the dollar cost input field
+        $('#dollar-cost').val('$' + dollarCost.toFixed(2));
+      });
+    });
+  </script>
 {% endblock %}

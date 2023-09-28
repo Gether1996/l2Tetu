@@ -86,10 +86,13 @@ body {
 }
 
 .login-register-container {
-    margin-top: 50px; /* Adjust margin-top as needed to move it to the upper-top */
+    margin-top: 100px; /* Adjust margin-top as needed to move it to the upper-top */
     margin-left: 200px;
     color: white;
     position: relative;
+    border: 5px solid #573414; /* You can adjust the border width and color as needed */
+    border-radius: 10px;
+    padding: 20px; /* Optional: Add some padding to create space between the content and the border */
 }
 
 /* Style the login form */
@@ -135,4 +138,27 @@ body {
     color: white;
     padding: 10px;
     cursor: pointer;
+    margin-left: 140px;
+}
+
+.page-title {
+    color: white;
+    margin-top: 50px;
+}
+
+#donation-form {
+    color: white;
+    margin-top: 50px;
+    line-height: 2.5;
+    font-size: 20px;
+}
+
+#dollar-cost,
+#coins {
+    width: 80px;
+    font-size: 20px;
+}
+
+#paypal-button img {
+    margin-top: 30px;
 }
