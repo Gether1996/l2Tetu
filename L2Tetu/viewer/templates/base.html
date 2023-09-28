@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% load static %}
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="icon" href="{% static 'images/Hiro.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    {% block head %}{% endblock %}
+
+</head>
+<body>
+
+    {% include 'navbar.html' %}
+    <div class="main-content">
+        {% block content %}{% endblock %}
+    </div>
+    {% block scripts %}{% endblock %}
+    <img class="small-logo-bottom-middle" src="{% static 'images/Hiro.ico' %}">
+
+</body>
+</html>

@@ -1,25 +1,21 @@
 body {
-    background-color: #1e1a1b;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
+    margin-top: 30px;
+    align-items: flex-start; /* Align content to the top */
+    background-color: #1e1a1b; /* Set your background color */
 }
 
+/* Style the navbar */
 .navbar {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 20px;
-    position: relative;
+    width: 300px; /* Adjust the width of the navbar as needed */
+    padding: 20px; /* Adjust padding as needed */
+    /* Add other styles as needed for your navbar */
 }
 
 .logo-image {
-    max-width: 400px;
+    max-width: 300px;
     height: auto;
+    margin-left: 5px;
 }
 
 .nav-buttons {
@@ -27,7 +23,6 @@ body {
     flex-direction: column;
     align-items: center;
     margin-top: 20px;
-    margin-left: 120px;
     position: relative;
 }
 
@@ -43,9 +38,16 @@ body {
     font-family: Georgia, serif;
 }
 
-.nav-button:hover {
+.nav-button:hover,
+.sign-up-button:hover,
+.login-register-confirm-button:hover{
     transform: scale(1.2);
     color: #573414;
+}
+
+.nav-button a {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Inherit the color from the parent element */
 }
 
 /* Add golden lines using pseudo-elements */
@@ -54,9 +56,9 @@ body {
     content: "";
     background-color: #573414; /* Golden color */
     height: 4px; /* Line height */
-    width: 100%; /* Line width */
+    width: 70%; /* Line width */
     position: absolute;
-    left: 0;
+    left: 40;
     transition: transform 0.2s ease-in-out;
 }
 
@@ -75,10 +77,62 @@ body {
 }
 
 .small-logo-bottom-middle {
-    max-width: 200px; /* Adjust the size as needed */
+    max-width: 50px; /* Adjust the size as needed */
     height: auto;
     position: absolute; /* Position the image */
     bottom: 0; /* Position at the bottom */
     left: 50%; /* Start at the horizontal center */
     transform: translateX(-50%); /* Center horizontally */
+}
+
+.login-register-container {
+    margin-top: 50px; /* Adjust margin-top as needed to move it to the upper-top */
+    margin-left: 200px;
+    color: white;
+    position: relative;
+}
+
+/* Style the login form */
+.login-register-container form {
+    display: inline-block;
+    margin-bottom: 20px; /* Add space between form and button */
+}
+
+.signup-link-container {
+  display: flex;
+  align-items: center; /* Vertically center the content */
+  justify-content: flex-end; /* Push content to the right */
+  margin-top: 10px; /* Adjust margin as needed */
+}
+
+/* Style the "No account yet?" text */
+.no-account-text {
+  margin-left: 210px; /* Add space between text and button */
+  color: white;
+}
+
+/* Style the Sign up button */
+.sign-up-button {
+    display: block;
+    margin: 0 auto; /* Center the button horizontally */
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    color: white;
+    transition: transform 0.2s ease-in-out;
+}
+
+.sign-up-button a {
+    text-decoration: none; /* Remove underline */
+    color: inherit;
+}
+
+.login-register-confirm-button {
+    background-color: transparent;
+    border: none;
+    border-radius: 2px;
+    font-size: 20px;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
 }
