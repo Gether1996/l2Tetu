@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import SignUpForm
 from django.contrib.auth import logout
+from .models import Wallet, Character
 
 
 def homepage(request):
@@ -24,7 +25,10 @@ def registration(request):
 
 
 def account(request):
-    return render(request, 'account.html')
+    logged_user = request.user
+    wallet = Wallet.objects.get(user=logged_user)
+    chars = Character.objects.filter(user=logged_user)
+    return render(request, 'account.html', {'wallet': wallet, 'chars': chars})
 
 
 def forum(request):
@@ -32,4 +36,6 @@ def forum(request):
 
 
 def donate(request):
-    return render(request, 'donate.html')
+    logged_user = request.user
+    wallet = Wallet.objects.get(user=logged_user)
+    return render(request, 'donate.html', {'wallet': wallet})

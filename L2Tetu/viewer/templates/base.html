@@ -9,17 +9,26 @@
     <title>{% block title %}{% endblock %}</title>
     <link rel="icon" href="{% static 'images/Hiro.ico' %}" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     {% block head %}{% endblock %}
 
 </head>
 <body>
 
+    <div class="top-right-content">
+        {% if request.user.is_authenticated %}
+            <h2>{{ user.username }} {% if user.is_superuser %}(admin){% endif %}</h2>
+            <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt base-logout" title="Log-out"></i></a>
+        {% endif %}
+    </div>
+
     {% include 'navbar.html' %}
     <div class="main-content">
         {% block content %}{% endblock %}
     </div>
-    {% block scripts %}{% endblock %}
     <img class="small-logo-bottom-middle" src="{% static 'images/Hiro.ico' %}">
 
 </body>
+    {% block scripts %}{% endblock %}
 </html>

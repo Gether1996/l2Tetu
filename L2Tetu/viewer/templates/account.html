@@ -6,4 +6,25 @@
 
 {% block content%}
     <h1 class="page-title">Account {{ user.username }}</h1>
+    <h2 class="coins-in-account">Coins of Luck: {{ wallet.coins }} <img class="coins-img" src="{% static 'images/coins.png' %}"></h2>
+
+    <h1 class="page-title">Characters</h1>
+    <table class="characters-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Level</th>
+                <th>Coins</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for character in chars %}
+                <tr>
+                    <td>{{ character.name }}</td>
+                    <td>{{ character.level }}</td>
+                    <td>{{ character.coins }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

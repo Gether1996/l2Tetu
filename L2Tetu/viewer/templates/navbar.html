@@ -10,6 +10,10 @@
             <button class="nav-button"><a href="{% url 'login' %}">Account</a></button>
         {% endif %}
         <button class="nav-button"><a href="{% url 'forum' %}">Forum</a></button>
-        <button class="nav-button"><a href="{% url 'donate' %}">Donate</a></button>
+        {% if user.is_authenticated %}
+            <button class="nav-button"><a href="{% url 'donate' %}">Donate</a></button>
+        {% else %}
+            <button class="nav-button"><a href="{% url 'login' %}">Donate</a></button>
+        {% endif %}
     </div>
 </nav>

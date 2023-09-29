@@ -14,6 +14,7 @@
     <label for="coins">Number of Coins:</label>
     <input type="number" name="coins" id="coins" min="1" required>
     <br>
+    <p class="ten-off-text">(Save 10% above 600 coins)</p>
 
     <!-- Input for showing the dollar cost -->
     <label for="dollar-cost">Dollar Cost:</label>
@@ -25,17 +26,8 @@
     </a>
   </form>
 
+{% block scripts %}
+  <script src="{% static 'scripts/donate.js' %}"></script>
+{% endblock %}
 
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script>
-    $(document).ready(function () {
-      $('#coins').on('input', function () {
-        var coins = $(this).val();
-        var dollarCost = coins / 10; // Assuming 10 coins = $1
-
-        // Update the dollar cost input field
-        $('#dollar-cost').val('$' + dollarCost.toFixed(2));
-      });
-    });
-  </script>
 {% endblock %}

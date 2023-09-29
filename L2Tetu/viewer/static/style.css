@@ -8,7 +8,7 @@ body {
 /* Style the navbar */
 .navbar {
     width: 300px; /* Adjust the width of the navbar as needed */
-    padding: 20px; /* Adjust padding as needed */
+    padding: 40px; /* Adjust padding as needed */
     /* Add other styles as needed for your navbar */
 }
 
@@ -143,12 +143,20 @@ body {
 
 .page-title {
     color: white;
-    margin-top: 50px;
+    margin-top: 80px;
+    margin-left: 50px;
+}
+
+h2.coins-in-account {
+    margin-top: 20px;
+    color: white;
+    margin-left: 50px;
 }
 
 #donation-form {
     color: white;
-    margin-top: 50px;
+    margin-top: 100px;
+    margin-left: 50px;
     line-height: 2.5;
     font-size: 20px;
 }
@@ -161,4 +169,84 @@ body {
 
 #paypal-button img {
     margin-top: 30px;
+}
+
+.ten-off-text {
+    font-size: 15px;
+}
+
+.coins-img {
+    width: 35px;
+}
+
+/* Style for the characters table */
+.characters-table {
+    width: 500px; /* Make the table wider */
+    border: 5px solid #573414; /* Add an outer border with golden color */
+    margin-left: 50px;
+    margin-top: 60px;
+    border-collapse: collapse;
+}
+
+/* Header row styles */
+.characters-table th {
+    background-color: #573414;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    padding: 8px;
+    font-size: 25px;
+}
+
+/* Alternating row background colors */
+.characters-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.characters-table tbody tr:nth-child(odd) {
+    background-color: grey;
+    color: black;
+}
+
+/* Hover effect on rows */
+.characters-table tbody tr:hover {
+    background-color: #573414;
+    color: #fff; /* Change text color on hover to improve contrast */
+    cursor: pointer;
+}
+
+/* Cell styles */
+.characters-table td {
+    padding: 8px;
+}
+
+/* Center align numeric cells (Level and Coins) */
+.characters-table td {
+    text-align: center;
+}
+
+.top-right-content {
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    position: fixed;
+    top: 40px; /* Adjust the top position as needed */
+    right: 40px; /* Adjust the right position as needed */
+    background-color: transparent; /* Background color */
+    padding: 10px;
+    margin: 50px;
+    border: 5px solid #573414; /* Optional border for better visibility */
+    border-radius: 5px; /* Optional border radius for rounded corners */
+    z-index: 9999; /* Set a high z-index to ensure it's above other content */
+    color: white;
+}
+
+.base-logout {
+    color: white;
+    font-size: 30px;
+    transition: 0.3s;
+}
+
+.base-logout:hover {
+    transform: scale(1.3);
 }
