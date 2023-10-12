@@ -4,16 +4,8 @@
     <img class="logo-image" src="{% static 'images/LOGO_Hiro.png' %}">
     <div class="nav-buttons">
         <button class="nav-button"><a href="{% url 'homepage' %}">Homepage</a></button>
-        {% if user.is_authenticated %}
-            <button class="nav-button"><a href="{% url 'account' %}">Account</a></button>
-        {% else %}
-            <button class="nav-button"><a href="{% url 'login' %}">Account</a></button>
-        {% endif %}
+        <button class="nav-button"><a href="{% url 'account' %}">Account</a></button>
         <button class="nav-button"><a href="{% url 'forum' %}">Forum</a></button>
-        {% if user.is_authenticated %}
-            <button class="nav-button"><a href="{% url 'donate' %}">Donate</a></button>
-        {% else %}
-            <button class="nav-button"><a href="{% url 'login' %}">Donate</a></button>
-        {% endif %}
+        <button class="nav-button"><a href="{% url 'donate' %}">Donate</a></button>
     </div>
 </nav>
