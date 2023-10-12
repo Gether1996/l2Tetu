@@ -20,3 +20,19 @@ function calculateDollarCost(coins) {
 
   return totalDollarCost;
 }
+
+function validateForm() {
+    var coins = parseFloat(document.getElementById('coins').value);
+    var dollarCost = parseFloat(document.getElementById('dollar-cost').value.replace('$', ''));
+
+    console.log(coins);
+    console.log(dollarCost);
+
+    // Ensure the Dollar Cost is at least $5
+    if (isNaN(dollarCost) || dollarCost < 5) {
+        alert('Dollar Cost must be a minimum of $5.');
+        return false;  // Prevent form submission
+    }
+
+    return true;  // Allow form submission if validation passes
+}

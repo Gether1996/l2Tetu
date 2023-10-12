@@ -38,7 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'viewer',
+    'paypal.standard.ipn',
 ]
+
+PAYPAL_RECEIVER_EMAIL = "pat.kredatus@gmail.com"
+PAYPAL_TEST = True  # Set this to False when you're ready to go live
+PAYPAL_TEST_IPN = "https://www.sandbox.paypal.com/cgi-bin/webscr"
+PAYPAL_IPN_URL = "https://sandbox.paypal.com/paypal/ipn"
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

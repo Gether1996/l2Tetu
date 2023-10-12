@@ -167,8 +167,16 @@ h2.coins-in-account {
     font-size: 20px;
 }
 
-#paypal-button img {
+.paypal-button {
     margin-top: 30px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.paypal-button:hover {
+   transform: scale(1.2);
+   transition: transform 0.3s ease;
 }
 
 .ten-off-text {

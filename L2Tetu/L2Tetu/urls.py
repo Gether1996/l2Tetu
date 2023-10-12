@@ -19,6 +19,7 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from viewer.views import homepage, forum, registration, account, logout_view, donate
+from paypal.standard.ipn import urls as paypal_urls
 
 urlpatterns = [
     path('', homepage, name='homepage'),
@@ -28,5 +29,7 @@ urlpatterns = [
     path('registration/', registration, name='registration'),
     path('accounts/profile/', account, name='account'),
     path('logout/', logout_view, name='logout'),
+    path('paypal/', include(paypal_urls)),
     path('donate/', donate, name='donate'),
+    path('paypal/ipn/', donate, name='paypal_ipn'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

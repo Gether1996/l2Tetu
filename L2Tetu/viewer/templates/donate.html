@@ -5,26 +5,21 @@
 {% block title %}Donation{% endblock %}
 
 {% block content %}
-  <h1 class="page-title">Donation</h1>
+    <h1 class="page-title">Donation</h1>
 
-  <form method="post" id="donation-form">
+<form method="post" id="donation-form" action="{% url 'donate' %}" onsubmit="return validateForm();">
     {% csrf_token %}
-
     <!-- Input for entering the number of coins -->
     <label for="coins">Number of Coins:</label>
     <input type="number" name="coins" id="coins" min="1" required>
     <br>
-    <p class="ten-off-text">(Save 10% above 600 coins)</p>
-
+    <p class="ten-off-text">(Save 10% above 600 coins, 5$ minimum.)</p>
     <!-- Input for showing the dollar cost -->
     <label for="dollar-cost">Dollar Cost:</label>
-    <input type="text" name="dollar-cost" id="dollar-cost" readonly>
+    <input type="text" name="dollar-cost" id="dollar-cost" readonly min="5">
     <br>
-
-    <a href="#" id="paypal-button" title="Pay with paypal">
-      <img src="{% static 'images/paypal-button.png' %}" alt="PayPal" style="border: none;" width="100">
-    </a>
-  </form>
+    <input type="image" src="{% static 'images/paypal-button.png' %}" width="100" title="Pay with PayPal">
+</form>
 
 {% block scripts %}
   <script src="{% static 'scripts/donate.js' %}"></script>
