@@ -36,3 +36,13 @@ function validateForm() {
 
     return true;  // Allow form submission if validation passes
 }
+
+function prepareCheckout() {
+    var coins = document.getElementById('coins').value;
+    var dollarCostField = document.getElementById('dollar-cost');
+    var dollars = dollarCostField.value.replace('$', ''); // Remove the dollar sign
+
+    var checkoutLink = document.getElementById('checkout-link');
+    checkoutLink.href = 'checkout/?coins=' + coins + '&dollars=' + dollars;
+    window.location.href = checkoutLink.href;
+}

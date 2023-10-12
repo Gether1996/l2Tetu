@@ -18,8 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
-from viewer.views import homepage, forum, registration, account, logout_view, donate
-from paypal.standard.ipn import urls as paypal_urls
+from viewer.views import homepage, forum, registration, account, logout_view, donate, success, fail, checkout
 
 urlpatterns = [
     path('', homepage, name='homepage'),
@@ -29,7 +28,10 @@ urlpatterns = [
     path('registration/', registration, name='registration'),
     path('accounts/profile/', account, name='account'),
     path('logout/', logout_view, name='logout'),
-    path('paypal/', include(paypal_urls)),
+    path('', include('paypal.standard.ipn.urls')),
     path('donate/', donate, name='donate'),
+    path('donate/checkout/', checkout, name='checkout'),
     path('paypal/ipn/', donate, name='paypal_ipn'),
+    path('success/', success, name='success'),
+    path('fail/', fail, name='fail'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

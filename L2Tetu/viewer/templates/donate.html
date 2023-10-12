@@ -18,7 +18,9 @@
     <label for="dollar-cost">Dollar Cost:</label>
     <input type="text" name="dollar-cost" id="dollar-cost" readonly min="5">
     <br>
-    <input type="image" src="{% static 'images/paypal-button.png' %}" width="100" title="Pay with PayPal">
+    <button>
+        <a id="checkout-link" href="#" onclick="prepareCheckout()">Checkout</a>
+    </button>
 </form>
 
 {% block scripts %}

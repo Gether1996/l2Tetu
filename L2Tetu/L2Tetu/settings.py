@@ -41,12 +41,6 @@ INSTALLED_APPS = [
     'paypal.standard.ipn',
 ]
 
-PAYPAL_RECEIVER_EMAIL = "pat.kredatus@gmail.com"
-PAYPAL_TEST = True  # Set this to False when you're ready to go live
-PAYPAL_TEST_IPN = "https://www.sandbox.paypal.com/cgi-bin/webscr"
-PAYPAL_IPN_URL = "https://sandbox.paypal.com/paypal/ipn"
-
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -130,3 +124,6 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+PAYPAL_RECEIVER_EMAIL = "pat.kredatus@gmail.com"
+PAYPAL_TEST = True  # Set this to False when you're ready to go live

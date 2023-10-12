@@ -303,3 +303,11 @@ h2.coins-in-account {
     color: white;
     font-size: 20px;
 }
+
+.checkout {
+    margin-top: 80px;
+}
+
+.checkout-text {
+    color: white;
+}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Checkout{% endblock %}
+
+{% block content%}
+    <div class="checkout">
+        <h1 class="checkout-text">Number of coins: {{ coins }}</h1>
+        <h1 class="checkout-text">Payment: {{ dollars }}$</h1>
+    </div>
+    {{ paypal.render }}
+{% endblock %}
