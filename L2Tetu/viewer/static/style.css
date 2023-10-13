@@ -167,18 +167,6 @@ h2.coins-in-account {
     font-size: 20px;
 }
 
-.paypal-button {
-    margin-top: 30px;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-}
-
-.paypal-button:hover {
-   transform: scale(1.2);
-   transition: transform 0.3s ease;
-}
-
 .ten-off-text {
     font-size: 15px;
 }
@@ -310,4 +298,29 @@ h2.coins-in-account {
 
 .checkout-text {
     color: white;
+}
+
+.checkout-button {
+  border: none;
+  border-radius: 10px;
+  background-color: #573414;
+  display: inline-block;
+  padding: 12px 32px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.checkout-button:hover {
+  background-color: #704a2c;
+}
+
+.donate-coins-img {
+    width: 28px;
+    margin-left: 3px;
+}
+
+a#checkout-link {
+  color: white !important; /* Add !important to override any conflicting styles */
+  text-decoration: none !important; /* Add !important to remove text decoration */
+  font-size: 24px;
 }

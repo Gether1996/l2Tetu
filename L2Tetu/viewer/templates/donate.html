@@ -12,13 +12,14 @@
     <!-- Input for entering the number of coins -->
     <label for="coins">Number of Coins:</label>
     <input type="number" name="coins" id="coins" min="1" required>
+    <img src="{% static 'images/coins.png' %}" class="donate-coins-img">
     <br>
     <p class="ten-off-text">(Save 10% above 600 coins, 5$ minimum.)</p>
     <!-- Input for showing the dollar cost -->
     <label for="dollar-cost">Dollar Cost:</label>
-    <input type="text" name="dollar-cost" id="dollar-cost" readonly min="5">
+    <input type="text" name="dollar-cost" id="dollar-cost" readonly min="5"> $
     <br>
-    <button>
+    <button class="checkout-button">
         <a id="checkout-link" href="#" onclick="prepareCheckout()">Checkout</a>
     </button>
 </form>

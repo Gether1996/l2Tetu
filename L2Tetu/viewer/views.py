@@ -4,7 +4,7 @@ from django.urls import reverse
 import uuid
 from .forms import SignUpForm
 from django.contrib.auth import logout
-from .models import Character
+from .models import Character, Wallet
 from django.contrib.auth.decorators import login_required
 from paypal.standard.forms import PayPalPaymentsForm
 from django.conf import settings
@@ -53,6 +53,8 @@ def checkout(request):
     print(coins)
     print(dollars)
 
+    request.session['coins'] = coins
+
     host = request.get_host()
 
     paypal_dict = {
@@ -76,6 +78,13 @@ def checkout(request):
 
 
 def success(request):
+    coins = request.session.get('coins')
+    if coins and request.user.is_authenticated:
+        user = request.user
+        wallet = Wallet.objects.get(user=user)
+        wallet.coins += int(coins)
+        wallet.save()
+        del request.session['coins']
     return render(request, 'payment_ok.html')
 
 

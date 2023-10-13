@@ -6,8 +6,8 @@
 
 {% block content%}
     <div class="checkout">
-        <h1 class="checkout-text">Number of coins: {{ coins }}</h1>
-        <h1 class="checkout-text">Payment: {{ dollars }}$</h1>
+        <h1 class="checkout-text">Number of coins: {{ coins }} <img src="{% static 'images/coins.png' %}" class="donate-coins-img"></h1>
+        <h1 class="checkout-text">Payment: {{ dollars }} $</h1>
     </div>
     {{ paypal.render }}
 {% endblock %}
