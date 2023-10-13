@@ -1,3 +1,5 @@
+import json
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.urls import reverse
@@ -33,8 +35,24 @@ def registration(request):
 @login_required
 def account(request):
     logged_user = request.user
+    wallet = Wallet.objects.get(user=logged_user)
     chars = Character.objects.filter(user=logged_user)
-    return render(request, 'account.html', {'chars': chars})
+    json_data_chars = [
+        {
+            'id': str(char.id),
+            'name': str(char.name),
+            'coins': str(char.coins)
+        }
+        for char in chars
+    ]
+    json_data_wallet = {'coins': str(wallet.coins)}
+
+    context = {
+        'chars': chars,
+        'json_data_chars': json_data_chars,
+        'json_data_wallet': json_data_wallet
+    }
+    return render(request, 'account.html', context)
 
 
 def forum(request):
@@ -89,4 +107,24 @@ def success(request):
 
 
 def fail(request):
+    del request.session['coins']
     return render(request, 'payment_fail.html')
+
+
+@csrf_exempt
+@login_required
+def transfer_coins(request):
+    if request.method == 'POST':
+        request_data = json.loads(request.body)
+        coins = request_data['transferAmount']
+
+        wallet = Wallet.objects.get(user=request.user)
+        char = Character.objects.get(id=request_data['charId'])
+        print(f"{coins} transfering to {char.name}")
+
+        wallet.coins -= int(coins)
+        char.coins += int(coins)
+        wallet.save()
+        char.save()
+        return JsonResponse({"status": "success"})
+    return JsonResponse({"status": "error"})
