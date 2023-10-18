@@ -3,15 +3,53 @@
 {% load static %}
 
 {% block title %}Registration{% endblock %}
+
 {% block content %}
+
 
 <div class="login-register-container">
   <h1>Sign up</h1>
   <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+
+    <div class="form-group">
+      <label for="{{ form.username.id_for_label }}">Username:</label>
+      {{ form.username }}
+    </div>
+
+    <div class="form-group">
+      <label for="{{ form.email.id_for_label }}">Email:</label>
+      {{ form.email }}
+    </div>
+
+    <div class="form-group">
+      <label for="{{ form.password1.id_for_label }}">Password:</label>
+      {{ form.password1 }}
+    </div>
+
+    <div class="form-group">
+      <label for="{{ form.password2.id_for_label }}">Confirm Password:</label>
+      {{ form.password2 }}
+    </div>
+
+    <div class="form-group">
+      <label for="{{ form.captcha.id_for_label }}"></label>
+      {{ form.captcha }}
+    </div>
+
     <button type="submit" class="login-register-confirm-button">Sign up</button>
+    {% if messages %}
+      <ul class="messages">
+      {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
   </form>
 </div>
 
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'scripts/registration.js' %}"></script>
 {% endblock %}

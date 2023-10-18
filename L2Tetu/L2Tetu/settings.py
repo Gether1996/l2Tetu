@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'viewer',
     'paypal.standard.ipn',
+    'captcha',
 ]
 
 MIDDLEWARE = [
@@ -130,3 +131,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 PAYPAL_RECEIVER_EMAIL = "pat.kredatus@gmail.com"
 PAYPAL_TEST = True  # Set this to False when you're ready to go live
 # PAYPAL_BUY_BUTTON_IMAGE = asfdafsd
+
+RECAPTCHA_PUBLIC_KEY = '6LdZ66woAAAAAGijYkleOFCGskb6aETlL3CP0q5M'
+RECAPTCHA_PRIVATE_KEY = '6LdZ66woAAAAAGulgToWohy7qK9mXP3rjJVqPVlm'
+RECAPTCHA_DOMAINS = ['localhost']

@@ -1,4 +1,5 @@
 import json
+from django.contrib import messages
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
@@ -25,8 +26,13 @@ def registration(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            new_wallet = Wallet.objects.create(user=user)
+            new_wallet.save()
             return redirect('homepage')
+        else:
+            messages.error(request, 'Something went wrong.')
+            return render(request, 'registration.html', {'form': form})
     else:
         form = SignUpForm()
     return render(request, 'registration.html', {'form': form})

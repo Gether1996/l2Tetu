@@ -86,19 +86,31 @@ body {
 }
 
 .login-register-container {
+    width: 300px;
+    text-align: center;
     margin-top: 100px; /* Adjust margin-top as needed to move it to the upper-top */
     margin-left: 200px;
     color: white;
     position: relative;
     border: 5px solid #573414; /* You can adjust the border width and color as needed */
     border-radius: 10px;
-    padding: 20px; /* Optional: Add some padding to create space between the content and the border */
+    padding: 40px; /* Optional: Add some padding to create space between the content and the border */
+}
+
+.login-register-container label {
+    display: block; /* Display labels on their own lines */
+    font-weight: bold; /* Make labels bold, adjust as needed */
+}
+
+.login-register-container input {
+    font-size: 18px;
 }
 
 /* Style the login form */
 .login-register-container form {
     display: inline-block;
     margin-bottom: 20px; /* Add space between form and button */
+    font-size: 20px;
 }
 
 .signup-link-container {
@@ -138,7 +150,28 @@ body {
     color: white;
     padding: 10px;
     cursor: pointer;
-    margin-left: 140px;
+    margin-top: 10px;
+}
+
+.form-group img.captcha {
+    width: 150px;
+    margin-top: 20px;
+    display: block;
+    margin-bottom: 20px;
+    margin-left: 40px;
+}
+
+#id_captcha_1 {
+    width: 100px;
+}
+
+ul.messages {
+  list-style: none; /* Remove the default list style */
+  padding: 0; /* Remove default padding */
+  color: red;
+  margin-top: 20px;
+  font-size: 25px;
+  margin-bottom: 0px;
 }
 
 .page-title {
