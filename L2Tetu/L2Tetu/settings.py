@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-o_bb&ii8t4x2yti%39l#&&dscj*vzu310%x0+v7#k=fv@bzfm9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['51.79.73.213', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -79,10 +79,21 @@ WSGI_APPLICATION = 'L2Tetu.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'HOST': '64.31.55.35',
+        'PORT': '3306',
+        'NAME': 'l2hiro_login',
+        'USER': 'dev',
+        'PASSWORD': 'patrick_operate',
     }
 }
 
@@ -122,6 +133,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
