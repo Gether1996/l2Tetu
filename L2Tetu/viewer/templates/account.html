@@ -13,16 +13,16 @@
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Level</th>
-                <th>Coins</th>
+                <th>ID</th>
+                <th>COLs</th>
             </tr>
         </thead>
         <tbody>
-            {% for character in chars %}
+            {% for char in json_data_chars %}
                 <tr onclick="transferCoins('{{ character.id }}')">
-                    <td>{{ character.name }}</td>
-                    <td>{{ character.level }}</td>
-                    <td>{{ character.coins }}</td>
+                    <td>{{ char.name }}</td>
+                    <td>{{ char.id }}</td>
+                    <td>{{ char.COLs }}</td>
                 </tr>
             {% endfor %}
         </tbody>

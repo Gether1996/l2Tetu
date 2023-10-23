@@ -1,13 +1,13 @@
 from django.contrib import admin
-from .models import Wallet, Character
+from .models import Characters, Items
 
 
-@admin.register(Wallet)
+@admin.register(Characters)
 class DocumentAdmin(admin.ModelAdmin):
-    list_display = ('user', 'coins', 'id')
+    list_display = ('char_name', 'obj_id', 'account_name')
 
 
-@admin.register(Character)
+@admin.register(Items)
 class DocumentAdmin(admin.ModelAdmin):
-    list_display = ('user', 'name', 'id', 'level', 'coins')
+    list_display = ('object_id', 'owner_id', 'item_id', 'count')
 

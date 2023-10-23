@@ -7,7 +7,7 @@ from django.urls import reverse
 import uuid
 from .forms import SignUpForm
 from django.contrib.auth import logout
-from .models import Character, Wallet
+from .models import Characters, Items
 from django.contrib.auth.decorators import login_required
 from paypal.standard.forms import PayPalPaymentsForm
 from django.conf import settings
@@ -38,25 +38,29 @@ def registration(request):
     return render(request, 'registration.html', {'form': form})
 
 
-@login_required
+# @login_required
 def account(request):
-    logged_user = request.user
-    wallet = Wallet.objects.get(user=logged_user)
-    chars = Character.objects.filter(user=logged_user)
-    json_data_chars = [
-        {
-            'id': str(char.id),
-            'name': str(char.name),
-            'coins': str(char.coins)
-        }
-        for char in chars
-    ]
-    json_data_wallet = {'coins': str(wallet.coins)}
+    chars = Characters.objects.all()
+    item_id_to_count = 4037  # Specify the item_id you want to count - COLS
+
+    json_data_chars = []
+
+    for char in chars:
+        char_id = char.obj_id
+        try:
+            item = Items.objects.get(owner_id=char_id, item_id=item_id_to_count)
+            item_count = item.count
+        except Items.DoesNotExist:
+            item_count = 0
+
+        json_data_chars.append({
+            'id': str(char.obj_id),
+            'name': str(char.char_name),
+            'COLs': item_count
+        })
 
     context = {
-        'chars': chars,
         'json_data_chars': json_data_chars,
-        'json_data_wallet': json_data_wallet
     }
     return render(request, 'account.html', context)
 
