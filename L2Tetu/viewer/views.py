@@ -1,11 +1,9 @@
 import json
-from django.contrib import messages
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.urls import reverse
 import uuid
-from .forms import SignUpForm
 from django.contrib.auth import logout, authenticate, login
 from .models import Characters, Items
 from django.contrib.auth.decorators import login_required
@@ -33,20 +31,6 @@ def custom_login(request):
         else:
             return JsonResponse({'success': False, 'message': 'Wrong login or password'})
     return JsonResponse({'success': False, 'message': 'Invalid request method'})
-
-
-def registration(request):
-    if request.method == 'POST':
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            return redirect('homepage')
-        else:
-            messages.error(request, 'Something went wrong.')
-            return render(request, 'registration.html', {'form': form})
-    else:
-        form = SignUpForm()
-    return render(request, 'registration.html', {'form': form})
 
 
 @login_required

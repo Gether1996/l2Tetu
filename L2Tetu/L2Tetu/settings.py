@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-o_bb&ii8t4x2yti%39l#&&dscj*vzu310%x0+v7#k=fv@bzfm9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['51.79.73.213', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -111,6 +111,11 @@ DATABASE_ROUTERS = ['L2Tetu.routers.CustomRouter']
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
+
+AUTHENTICATION_BACKENDS = [
+    'accounts.backends.CustomAccountsBackend',
+    'django.contrib.auth.backends.ModelBackend',  # Keep the default backend
+]
 
 AUTH_PASSWORD_VALIDATORS = [
     {

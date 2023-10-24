@@ -18,8 +18,9 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
-from viewer.views import homepage, forum, registration, account, logout_view, donate, success, fail, checkout, \
+from viewer.views import homepage, forum, account, logout_view, donate, success, fail, checkout, \
     transfer_coins, custom_login
+from accounts.views import registration
 
 urlpatterns = [
     path('', homepage, name='homepage'),
