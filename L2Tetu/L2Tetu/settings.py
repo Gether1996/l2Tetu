@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'viewer',
     'paypal.standard.ipn',
     'captcha',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -94,8 +95,18 @@ DATABASES = {
         'NAME': 'l2hiro_game',
         'USER': 'dev',
         'PASSWORD': 'patrick_operate',
-    }
+    },
+    'login_db': {
+        'ENGINE': 'django.db.backends.mysql',
+        'HOST': '64.31.55.35',
+        'PORT': '3306',
+        'NAME': 'l2hiro_login',
+        'USER': 'dev',
+        'PASSWORD': 'patrick_operate',
+    },
 }
+
+DATABASE_ROUTERS = ['L2Tetu.routers.CustomRouter']
 
 
 # Password validation

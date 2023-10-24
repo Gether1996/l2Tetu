@@ -3,11 +3,10 @@ from .models import Characters, Items
 
 
 @admin.register(Characters)
-class DocumentAdmin(admin.ModelAdmin):
+class CharactersAdmin(admin.ModelAdmin):
     list_display = ('char_name', 'obj_id', 'account_name')
 
 
 @admin.register(Items)
-class DocumentAdmin(admin.ModelAdmin):
+class ItemsAdmin(admin.ModelAdmin):
     list_display = ('object_id', 'owner_id', 'item_id', 'count')
-

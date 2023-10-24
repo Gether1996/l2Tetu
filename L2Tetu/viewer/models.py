@@ -2,11 +2,6 @@ from django.contrib.auth.models import User
 from django.db.models import *
 
 
-# class Wallet(Model):
-#     user = ForeignKey(User, on_delete=CASCADE)
-#     coins = BigIntegerField(default=0)
-
-
 class Characters(Model):
     account_name = CharField(max_length=45)
     obj_id = IntegerField(db_column='obj_Id', primary_key=True)  # Field name made lowercase.
