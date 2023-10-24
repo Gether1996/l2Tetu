@@ -19,12 +19,13 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from viewer.views import homepage, forum, registration, account, logout_view, donate, success, fail, checkout, \
-    transfer_coins
+    transfer_coins, custom_login
 
 urlpatterns = [
     path('', homepage, name='homepage'),
     path('admin/', admin.site.urls),
     path('forum/', forum, name='forum'),
+    path('custom_login/', custom_login, name='custom_login'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('registration/', registration, name='registration'),
     path('accounts/profile/', account, name='account'),

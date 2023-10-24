@@ -6,7 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.urls import reverse
 import uuid
 from .forms import SignUpForm
-from django.contrib.auth import logout
+from django.contrib.auth import logout, authenticate, login
 from .models import Characters, Items
 from django.contrib.auth.decorators import login_required
 from paypal.standard.forms import PayPalPaymentsForm
@@ -22,13 +22,24 @@ def logout_view(request):
     return redirect('homepage')
 
 
+def custom_login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return JsonResponse({'success': True})
+        else:
+            return JsonResponse({'success': False, 'message': 'Wrong login or password'})
+    return JsonResponse({'success': False, 'message': 'Invalid request method'})
+
+
 def registration(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
             user = form.save()
-            new_wallet = Wallet.objects.create(user=user)
-            new_wallet.save()
             return redirect('homepage')
         else:
             messages.error(request, 'Something went wrong.')
@@ -38,7 +49,7 @@ def registration(request):
     return render(request, 'registration.html', {'form': form})
 
 
-# @login_required
+@login_required
 def account(request):
     chars = Characters.objects.all()
     item_id_to_count = 4037  # Specify the item_id you want to count - COLS
@@ -109,9 +120,8 @@ def success(request):
     coins = request.session.get('coins')
     if coins and request.user.is_authenticated:
         user = request.user
-        wallet = Wallet.objects.get(user=user)
-        wallet.coins += int(coins)
-        wallet.save()
+        user.points += int(coins)
+        user.save()
         del request.session['coins']
     return render(request, 'payment_ok.html')
 

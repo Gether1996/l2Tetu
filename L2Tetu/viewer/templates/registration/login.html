@@ -13,9 +13,12 @@
     <input type="text" name="username" id="username">
     <br>
     <label for="password">Password:</label>
-    <input type="password" name="password" id="password">
+        <div class="password-input-container">
+            <input type="password" name="password" id="password">
+            <i class="toggle-password fas fa-eye" id="toggle-password" title="Show password"></i>
+        </div>
     <br>
-    <input type="submit" class="login-register-confirm-button" value="Login">
+    <input type="submit" class="login-register-confirm-button" value="Login" id="login-button">
   </form>
 </div>
 
@@ -24,4 +27,8 @@
   <button class="sign-up-button"><a href="/registration/">Sign up</a></button>
 </div>
 
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'scripts/login.js' %}"></script>
 {% endblock %}

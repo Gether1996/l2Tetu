@@ -3,6 +3,8 @@ function logoutConfirmation() {
         title: 'Log-out?',
         icon: 'warning',
         iconColor: '#573414',
+        background: 'rgba(33, 29, 30, 0.6)',
+        color: 'white',
         showCancelButton: true,
         confirmButtonText: 'Yes',
         confirmButtonColor: '#573414',

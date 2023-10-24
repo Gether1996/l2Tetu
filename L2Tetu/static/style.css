@@ -357,3 +357,16 @@ a#checkout-link {
   text-decoration: none !important; /* Add !important to remove text decoration */
   font-size: 24px;
 }
+
+.password-input-container {
+    display: inline-block;
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    top: 36%;
+    right: -40px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
