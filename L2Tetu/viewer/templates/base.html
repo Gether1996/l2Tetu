@@ -20,9 +20,9 @@
     <div class="user-info">
         <div class="user-info-row">
             <i class="fa-regular fa-user-tie"></i>
-            <h2>{{ user.username }} {% if user.is_superuser %}(admin){% endif %}</h2>
+            <h2>{{ user.login }}</h2>
             <img src="{% static 'images/coins.png' %}" class="user-image">
-            <p class="coins-in-account">{{ wallet.coins }}</p>
+            <p class="coins-in-account">{{ user.points }}</p>
         </div>
         <a href="#" onclick="logoutConfirmation()"><i class="fas fa-sign-out-alt base-logout" title="Log-out"></i></a>
     </div>

@@ -114,7 +114,6 @@ DATABASE_ROUTERS = ['L2Tetu.routers.CustomRouter']
 
 AUTHENTICATION_BACKENDS = [
     'accounts.backends.CustomAccountsBackend',
-    'django.contrib.auth.backends.ModelBackend',  # Keep the default backend
 ]
 
 AUTH_PASSWORD_VALIDATORS = [

@@ -11,6 +11,8 @@ def registration(request):
             new_account = Accounts.objects.create(
                 login=form.cleaned_data['username'],
                 password=form.cleaned_data['password1'],
+                last_ip=get_client_ip(request),
+                is_staff=0,
             )
             return redirect('homepage')
         else:
@@ -19,3 +21,12 @@ def registration(request):
     else:
         form = SignUpForm()
     return render(request, 'registration.html', {'form': form})
+
+
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip

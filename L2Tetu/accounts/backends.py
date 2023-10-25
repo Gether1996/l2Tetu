@@ -3,10 +3,14 @@ from .models import Accounts
 
 
 class CustomAccountsBackend(ModelBackend):
-    def authenticate(self, request, login=None, password=None, **kwargs):
+    def authenticate(self, request, username=None, password=None, **kwargs):
+        user = Accounts.objects.filter(login=username).first()
+        if user and user.password == password:
+            return user  # Return the user instance
+        return None
+
+    def get_user(self, user_id):
         try:
-            # Check if a user with the given login and password exists
-            user = Accounts.objects.get(login=login, password=password)
+            return Accounts.objects.get(pk=user_id)
         except Accounts.DoesNotExist:
-            return None  # User not found or password is incorrect
-        return user  # Authentication succeeded
+            return None
