@@ -1,11 +1,12 @@
 from django.contrib.auth.backends import ModelBackend
 from .models import Accounts
+from django.contrib.auth.hashers import check_password
 
 
 class CustomAccountsBackend(ModelBackend):
     def authenticate(self, request, username=None, password=None, **kwargs):
         user = Accounts.objects.filter(login=username).first()
-        if user and user.password == password:
+        if user and check_password(password, user.password):
             return user  # Return the user instance
         return None
 

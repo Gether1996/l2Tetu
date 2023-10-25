@@ -2,17 +2,20 @@ from django.shortcuts import render, redirect
 from .forms import SignUpForm
 from django.contrib import messages
 from .models import Accounts
+from django.contrib.auth.hashers import make_password
 
 
 def registration(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
+            # Hash the password
+            hashed_password = make_password(form.cleaned_data['password1'])
+
             new_account = Accounts.objects.create(
                 login=form.cleaned_data['username'],
-                password=form.cleaned_data['password1'],
+                password=hashed_password,  # Save the hashed password
                 last_ip=get_client_ip(request),
-                is_staff=0,
             )
             return redirect('homepage')
         else:
