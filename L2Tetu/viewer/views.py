@@ -102,12 +102,13 @@ def checkout(request):
 
 def success(request):
     coins = request.session.get('coins')
+    bought_coins = coins
     if coins and request.user.is_authenticated:
         user = request.user
         user.points += int(coins)
         user.save()
         del request.session['coins']
-    return render(request, 'payment_ok.html')
+    return render(request, 'payment_ok.html', {'coins': bought_coins})
 
 
 def fail(request):
