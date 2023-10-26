@@ -1,6 +1,6 @@
 function transferCoins(charId) {
     var characters = json_data_chars;
-    var wallet = json_data_wallet;
+    var user_coins = json_data_user_coins;
 
     // Find the selected character by ID
     var selectedCharacter = characters.find(function(character) {
@@ -11,7 +11,7 @@ function transferCoins(charId) {
         title: `Transfer Coins to ${selectedCharacter.name}`,
         html: `
             <label for="transferAmount">Amount to Transfer:</label>
-            <input type="number" id="transferAmount" min="0" max="${wallet.coins}" step="1">
+            <input type="number" id="transferAmount" min="1" max="${user_coins.user_coins}" step="1">
         `,
         showCloseButton: true,
         showConfirmButton: true,
@@ -19,7 +19,7 @@ function transferCoins(charId) {
         preConfirm: () => {
             // Get values from the SweetAlert2 input fields
             var transferAmount = parseInt(document.getElementById('transferAmount').value, 10); // Convert the input to an integer with base 10
-            var walletCoins = parseInt(wallet.coins, 10); // Convert wallet.coins to an integer
+            var walletCoins = parseInt(user_coins.user_coins, 10); // Convert wallet.coins to an integer
 
             if (isNaN(transferAmount) || transferAmount <= 0 || transferAmount > walletCoins) {
                 Swal.showValidationMessage('Invalid transfer amount.');

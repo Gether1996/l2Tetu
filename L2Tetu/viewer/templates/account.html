@@ -5,8 +5,12 @@
 {% block title %}Account{% endblock %}
 
 {% block content%}
-    <h1 class="page-title">Account {{ user.username }}</h1>
-    <h2 class="coins-in-account">Coins of Luck: {{ wallet.coins }} <img class="coins-img" src="{% static 'images/coins.png' %}"></h2>
+    <h1 class="page-title">Account {% if user.login %}{{ user.login }}{% else %}{{ user.username }}(admin){% endif %}</h1>
+    {% if user.points %}
+        <h2 class="coins-in-account">Coins of Luck: {{ user.points }} <img class="coins-img" src="{% static 'images/coins.png' %}"></h2>
+    {% else %}
+        <h2 class="coins-in-account">Coins of Luck: 0 <img class="coins-img" src="{% static 'images/coins.png' %}"></h2>
+    {% endif %}
 
     <h1 class="page-title">Characters</h1>
     <table class="characters-table">
@@ -19,7 +23,7 @@
         </thead>
         <tbody>
             {% for char in json_data_chars %}
-                <tr onclick="transferCoins('{{ character.id }}')">
+                <tr onclick="transferCoins('{{ char.id }}')">
                     <td>{{ char.name }}</td>
                     <td>{{ char.id }}</td>
                     <td>{{ char.COLs }}</td>
@@ -33,6 +37,7 @@
     <script src="{% static 'scripts/account.js' %}"></script>
     <script>
         var json_data_chars = {{ json_data_chars|safe }};
+        var json_data_user_coins = {{ json_data_user_coins|safe }};
     </script>
 {% endblock %}
 

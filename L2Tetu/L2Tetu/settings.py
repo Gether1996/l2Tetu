@@ -113,7 +113,8 @@ DATABASE_ROUTERS = ['L2Tetu.routers.CustomRouter']
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
 AUTHENTICATION_BACKENDS = [
-    'accounts.backends.CustomAccountsBackend',
+    'accounts.backends.CustomAccountsBackend',  # Your custom backend
+    'django.contrib.auth.backends.ModelBackend',  # Django's default backend
 ]
 
 AUTH_PASSWORD_VALIDATORS = [

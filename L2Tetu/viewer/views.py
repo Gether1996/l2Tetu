@@ -35,27 +35,33 @@ def custom_login(request):
 
 @login_required
 def account(request):
-    chars = Characters.objects.all()
-    item_id_to_count = 4037  # Specify the item_id you want to count - COLS
+    if hasattr(request.user, 'login'):
+        chars = Characters.objects.filter(account_name=request.user.login)
+        json_data_user_coins = {'user_coins': request.user.points}
+    else:
+        chars = None
+        json_data_user_coins = {}
+    item_id_to_count = 4037  # Specify the item_id you want to count - COLs
 
     json_data_chars = []
 
-    for char in chars:
-        char_id = char.obj_id
-        try:
-            item = Items.objects.get(owner_id=char_id, item_id=item_id_to_count)
-            item_count = item.count
-        except Items.DoesNotExist:
-            item_count = 0
+    if chars:
+        for char in chars:
+            try:
+                item = Items.objects.get(owner_id=char.obj_id, item_id=item_id_to_count)
+                item_count = item.count
+            except Items.DoesNotExist:
+                item_count = 0
 
-        json_data_chars.append({
-            'id': str(char.obj_id),
-            'name': str(char.char_name),
-            'COLs': item_count
-        })
+            json_data_chars.append({
+                'id': str(char.obj_id),
+                'name': str(char.char_name),
+                'COLs': item_count
+            })
 
     context = {
         'json_data_chars': json_data_chars,
+        'json_data_user_coins': json_data_user_coins
     }
     return render(request, 'account.html', context)
 
@@ -73,8 +79,6 @@ def donate(request):
 def checkout(request):
     coins = request.GET.get('coins')
     dollars = request.GET.get('dollars')
-    print(coins)
-    print(dollars)
 
     request.session['coins'] = coins
 
@@ -122,14 +126,16 @@ def transfer_coins(request):
     if request.method == 'POST':
         request_data = json.loads(request.body)
         coins = request_data['transferAmount']
+        item_id_to_count = 4037  # COLs
 
-        wallet = Wallet.objects.get(user=request.user)
-        char = Character.objects.get(id=request_data['charId'])
-        print(f"{coins} transfering to {char.name}")
+        user = request.user
+        char = Characters.objects.get(obj_id=request_data['charId'])
+        cols_item = Items.objects.get(owner_id=char.obj_id, item_id=item_id_to_count)
+        print(f"{coins} transfering to {char.char_name}")
 
-        wallet.coins -= int(coins)
-        char.coins += int(coins)
-        wallet.save()
-        char.save()
+        user.points -= int(coins)
+        cols_item.count += int(coins)
+        user.save()
+        cols_item.save()
         return JsonResponse({"status": "success"})
     return JsonResponse({"status": "error"})

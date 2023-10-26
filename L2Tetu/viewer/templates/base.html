@@ -4,13 +4,11 @@
 {% load static %}
 
 <head>
-
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
     <link rel="icon" href="{% static 'images/Hiro.ico' %}" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
     <link rel="stylesheet" href="{% static 'fontawesome/css/all.css' %}">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     {% block head %}{% endblock %}
 
 </head>
@@ -20,9 +18,9 @@
     <div class="user-info">
         <div class="user-info-row">
             <i class="fa-regular fa-user-tie"></i>
-            <h2>{{ user.login }}</h2>
+            {% if user.login %}<h2>{{ user.login }}</h2>{% else %}<h2>{{ user.username }}</h2>{% endif %}
             <img src="{% static 'images/coins.png' %}" class="user-image">
-            <p class="coins-in-account">{{ user.points }}</p>
+            <p class="coins-in-account">{% if user.points %}{{ user.points }}{% else %}0{% endif %}</p>
         </div>
         <a href="#" onclick="logoutConfirmation()"><i class="fas fa-sign-out-alt base-logout" title="Log-out"></i></a>
     </div>
@@ -37,6 +35,7 @@
 </body>
     <script>var csrf_token = "{{ csrf_token }}";</script>
     <script src="{% static 'scripts/scripts.js' %}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{% static 'scripts/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'scripts/sweetalert2@11.js' %}"></script>
     {% block scripts %}{% endblock %}
 </html>
