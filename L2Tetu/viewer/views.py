@@ -20,6 +20,10 @@ def logout_view(request):
     return redirect('homepage')
 
 
+def news(request):
+    return render(request, 'news.html')
+
+
 def custom_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
