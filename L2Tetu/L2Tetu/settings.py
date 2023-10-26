@@ -80,13 +80,6 @@ WSGI_APPLICATION = 'L2Tetu.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -158,7 +151,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 PAYPAL_RECEIVER_EMAIL = "pat.kredatus@gmail.com"
 PAYPAL_TEST = True  # Set this to False when you're ready to go live
-
-RECAPTCHA_PUBLIC_KEY = '6LdZ66woAAAAAGijYkleOFCGskb6aETlL3CP0q5M'
-RECAPTCHA_PRIVATE_KEY = '6LdZ66woAAAAAGulgToWohy7qK9mXP3rjJVqPVlm'
-RECAPTCHA_DOMAINS = ['localhost']
