@@ -30,6 +30,7 @@ function transferCoins(charId) {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    "X-CSRFToken": csrf_token
                 },
                 body: JSON.stringify({
                     charId: charId,

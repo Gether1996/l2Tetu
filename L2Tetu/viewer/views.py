@@ -1,7 +1,6 @@
 import json
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
-from django.views.decorators.csrf import csrf_exempt
 from django.urls import reverse
 import uuid
 from django.contrib.auth import logout, authenticate, login
@@ -9,6 +8,7 @@ from .models import Characters, Items
 from django.contrib.auth.decorators import login_required
 from paypal.standard.forms import PayPalPaymentsForm
 from django.conf import settings
+from django.contrib import messages
 
 
 def homepage(request):
@@ -31,9 +31,10 @@ def custom_login(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return JsonResponse({'success': True})
+            return redirect('account')
         else:
-            return JsonResponse({'success': False, 'message': 'Wrong login or password'})
+            messages.error(request, 'Wrong login or password.')
+            return render(request, 'registration/login.html')
     return JsonResponse({'success': False, 'message': 'Invalid request method'})
 
 
@@ -124,7 +125,6 @@ def fail(request):
     return render(request, 'payment_fail.html')
 
 
-@csrf_exempt
 @login_required
 def transfer_coins(request):
     if request.method == 'POST':

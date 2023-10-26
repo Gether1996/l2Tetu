@@ -7,7 +7,7 @@
 
 <div class="login-register-container">
   <h1>Login</h1>
-  <form method="post">
+  <form method="post" action="{% url 'custom_login' %}">
     {% csrf_token %}
     <label for="username">Username:</label>
     <input type="text" name="username" id="username">
@@ -19,6 +19,13 @@
         </div>
     <br>
     <input type="submit" class="login-register-confirm-button" value="Login" id="login-button">
+    {% if messages %}
+        <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
   </form>
 </div>
 
