@@ -16,10 +16,13 @@ togglePassword.addEventListener('click', function () {
 
   function openRecoveryRequest() {
     Swal.fire({
-      title: 'Forgot Password',
+      title: 'Recovery email',
       html: '<input id="emailInput" class="swal2-input" placeholder="Email">',
       focusConfirm: false,
       showCancelButton: true,
+      background: '#141011db',
+      color: 'white',
+      confirmButtonColor: '#573414',
       preConfirm: () => {
         var email = Swal.getPopup().querySelector('#emailInput').value;
         if (!email) {
@@ -27,10 +30,6 @@ togglePassword.addEventListener('click', function () {
         return false;
         }
 
-        console.log(email);
-        // You might want to add additional client-side email validation here
-
-        // Send the email to the server for backend processing
         fetch('/password_reset_request/', {
           method: 'POST',
           headers: {
