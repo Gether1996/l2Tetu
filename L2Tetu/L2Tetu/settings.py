@@ -27,7 +27,14 @@ SECRET_KEY = 'django-insecure-o_bb&ii8t4x2yti%39l#&&dscj*vzu310%x0+v7#k=fv@bzfm9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['lineage2hiro.com', '127.0.0.1']
+ALLOWED_HOSTS = ['lineage2hiro.com', '51.68.44.203', '127.0.0.1']
+
+CORS_ALLOW_ALL_ORIGINS = False
+
+CORS_ALLOWED_ORIGINS = [
+    "https://lineage2hiro.com",
+    # other domain
+]
 
 
 # Application definition
@@ -43,6 +50,7 @@ INSTALLED_APPS = [
     'paypal.standard.ipn',
     'captcha',
     'accounts',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -53,6 +61,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'L2Tetu.urls'
@@ -156,7 +165,7 @@ RECAPTCHA_PRIVATE_KEY = '6LdZ66woAAAAAGulgToWohy7qK9mXP3rjJVqPVlm'
 RECAPTCHA_DOMAINS = ['localhost']
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://l2hiro.com',
+    'https://lineage2hiro.com',
     'https://subdomain.example.com',
     # Add other trusted origins as needed
 ]
