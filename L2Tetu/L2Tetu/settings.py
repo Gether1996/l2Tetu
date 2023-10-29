@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-o_bb&ii8t4x2yti%39l#&&dscj*vzu310%x0+v7#k=fv@bzfm9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['lineage2hiro.com']
+ALLOWED_HOSTS = ['lineage2hiro.com', '127.0.0.1']
 
 
 # Application definition
@@ -68,7 +68,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                # 'viewer.context_for_all_views.wallet_context',
             ],
         },
     },
@@ -155,3 +154,9 @@ PAYPAL_TEST = True  # Set this to False when you're ready to go live
 RECAPTCHA_PUBLIC_KEY = '6LdZ66woAAAAAGijYkleOFCGskb6aETlL3CP0q5M'
 RECAPTCHA_PRIVATE_KEY = '6LdZ66woAAAAAGulgToWohy7qK9mXP3rjJVqPVlm'
 RECAPTCHA_DOMAINS = ['localhost']
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://l2hiro.com',
+    'https://subdomain.example.com',
+    # Add other trusted origins as needed
+]

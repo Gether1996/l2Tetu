@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from paypal.standard.forms import PayPalPaymentsForm
 from django.conf import settings
 from django.contrib import messages
+from django.views.decorators.csrf import csrf_protect
 
 
 def homepage(request):
@@ -24,6 +25,7 @@ def news(request):
     return render(request, 'news.html')
 
 
+@csrf_protect
 def custom_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
