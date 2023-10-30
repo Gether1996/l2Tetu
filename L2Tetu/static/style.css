@@ -391,3 +391,8 @@ a#checkout-link {
     transform: scale(1.2);
     color: #573414;
 }
+
+.email-in-account-text {
+    margin-left: 50px;
+    color: white;
+}

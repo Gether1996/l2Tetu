@@ -29,12 +29,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['lineage2hiro.com', '51.68.44.203', '127.0.0.1']
 
-CORS_ALLOW_ALL_ORIGINS = False
-
-CORS_ALLOWED_ORIGINS = [
-    "https://lineage2hiro.com",
-    # other domain
-]
+# CORS_ALLOW_ALL_ORIGINS = False
+#
+# CORS_ALLOWED_ORIGINS = [
+#     "https://lineage2hiro.com",
+#     # other domain
+# ]
 
 
 # Application definition
@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'paypal.standard.ipn',
     'captcha',
     'accounts',
-    'corsheaders',
+    # 'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -61,7 +61,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
+    # 'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'L2Tetu.urls'
@@ -160,9 +160,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 PAYPAL_RECEIVER_EMAIL = "pat.kredatus@gmail.com"
 PAYPAL_TEST = True  # Set this to False when you're ready to go live
 
-RECAPTCHA_PUBLIC_KEY = '6LdZ66woAAAAAGijYkleOFCGskb6aETlL3CP0q5M'
-RECAPTCHA_PRIVATE_KEY = '6LdZ66woAAAAAGulgToWohy7qK9mXP3rjJVqPVlm'
-RECAPTCHA_DOMAINS = ['localhost']
 
 CSRF_TRUSTED_ORIGINS = [
     'https://lineage2hiro.com',

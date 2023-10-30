@@ -12,7 +12,7 @@
         <h2 class="coins-in-account">Coins of Luck: 0 <img class="coins-img" src="{% static 'images/coins.png' %}"></h2>
     {% endif %}
 
-    {% if user.email %}<h3>{{ user.email }}</h3>{% endif %}
+    {% if user.email %}<h3 class="email-in-account-text">{{ user.email }}</h3>{% endif %}
 
     <h1 class="page-title">Characters</h1>
     <table class="characters-table">

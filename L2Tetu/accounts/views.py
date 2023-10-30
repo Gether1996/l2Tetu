@@ -55,7 +55,7 @@ def password_reset_request(request):
             if account:
                 print(account.email)
                 token = account.generate_reset_token()
-                reset_link = f"http://127.0.0.1:8000/reset/{token}"
+                reset_link = f"https://lineage2hiro.com/reset/{token}"
 
                 # Send email with reset link
                 send_mail(
