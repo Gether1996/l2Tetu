@@ -18,7 +18,7 @@ class Accounts(Model):
     allow_ip = CharField(max_length=255, default="")
     allow_hwid = CharField(max_length=255, default="")
     points = IntegerField(default=0)
-    phone_number = BigIntegerField(default=0)
+    phone_nubmer = BigIntegerField(default=0)
     is_staff = BooleanField(default=False)
     is_active = BooleanField(default=True)
 
