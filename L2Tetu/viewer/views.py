@@ -73,10 +73,6 @@ def account(request):
     return render(request, 'account.html', context)
 
 
-def forum(request):
-    return render(request, 'forum.html')
-
-
 @login_required
 def donate(request):
     return render(request, 'donate.html')

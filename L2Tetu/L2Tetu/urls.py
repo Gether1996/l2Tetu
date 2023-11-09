@@ -18,14 +18,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
-from viewer.views import homepage, forum, account, logout_view, donate, success, fail, checkout, \
+from viewer.views import homepage, account, logout_view, donate, success, fail, checkout, \
     transfer_coins, custom_login, news
 from accounts.views import registration, password_reset_request, password_reset_confirm
 
 urlpatterns = [
     path('', homepage, name='homepage'),
     path('admin/', admin.site.urls),
-    path('forum/', forum, name='forum'),
     path('news/', news, name='news'),
     path('custom_login/', custom_login, name='custom_login'),
     path('accounts/', include('django.contrib.auth.urls')),
