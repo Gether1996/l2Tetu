@@ -8,9 +8,8 @@ from .models import Accounts
 from django.contrib.auth.hashers import make_password
 from django.core.mail import send_mail
 from django.http import JsonResponse
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.utils.encoding import force_bytes
-from django.contrib.auth.tokens import default_token_generator
+from django.utils.http import urlsafe_base64_decode
+import binascii
 
 
 @csrf_protect
@@ -18,18 +17,21 @@ def registration(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
-            # Hash the password
-            hashed_password = make_password(form.cleaned_data['password1'])
-
-            new_account = Accounts.objects.create(
-                login=form.cleaned_data['username'],
-                password=hashed_password,  # Save the hashed password
-                email=form.cleaned_data['email'],
-                last_ip=get_client_ip(request),
-            )
-            return redirect('homepage')
+            # Check if the email is already registered
+            try:
+                already_regged_email = Accounts.objects.get(email=form.cleaned_data['email'])
+                return render(request, 'registration.html', {'form': form, 'error_message': 'Email already registered'})
+            except Accounts.DoesNotExist:
+                # Email is not registered, continue with the registration process
+                hashed_password = make_password(form.cleaned_data['password1'])
+                new_account = Accounts.objects.create(
+                    login=form.cleaned_data['username'],
+                    password=hashed_password,
+                    email=form.cleaned_data['email'],
+                    last_ip=get_client_ip(request),
+                )
+                return redirect('homepage')
         else:
-            messages.error(request, 'Something went wrong.')
             return render(request, 'registration.html', {'form': form})
     else:
         form = SignUpForm()
@@ -45,7 +47,6 @@ def get_client_ip(request):
     return ip
 
 
-@csrf_protect
 def password_reset_request(request):
     if request.method == 'POST':
         request_data = json.loads(request.body)
@@ -55,16 +56,13 @@ def password_reset_request(request):
             if account:
                 print(account.email)
                 token = account.generate_reset_token()
-                reset_link = f"https://lineage2hiro.com/reset/{token}"
+                reset_link = f"https://lineage2hiro.com/reset/{token}/"
 
-                # Send email with reset link
-                send_mail(
-                    'Password reset',
-                    f'Click the following link to reset your password: {reset_link}',
-                    'from@example.com',
-                    [email],
-                    fail_silently=False,
-                )
+                subject = 'L2Hiro password reset'
+                message = f'Hello {account.login},\n\nClick the following link to reset your password: {reset_link}'
+                from_email = 'gether1996@gmail.com'
+                send_mail(subject, message, from_email, [email])
+
 
                 print(token)
                 print(reset_link)
@@ -75,21 +73,35 @@ def password_reset_request(request):
         return JsonResponse({'success': False})
 
 
-@csrf_protect
 def password_reset_confirm(request, token):
-    try:
-        # Decoding the token
-        decoded_token = urlsafe_base64_decode(token).decode()
+    uid = urlsafe_base64_decode(token).decode()
+    user = Accounts.objects.get(id=uid)
+    context = {
+        'user': user
+    }
+    return render(request, 'password_reset_form.html', context)
 
-        # Extract UID and email from the decoded token
-        uid, email = decoded_token.split('-')  # Assuming the token format is 'uid-email'
 
-        # Get the user based on the UID
-        user = Accounts.objects.get(pk=uid)  # Fetch the user using the UID
+def password_reset_confirm_post(request):
+    if request.method == 'POST':
+        try:
+            request_data = json.loads(request.body)
+            user_id = request_data['id']
+            user = Accounts.objects.get(id=user_id)
 
-        if user.email == email:
-            return redirect('password_reset_form')
-        else:
-            return JsonResponse('Invalid token. Email mismatch.')
-    except (TypeError, ValueError, OverflowError, Accounts.DoesNotExist, IndexError):
-        return JsonResponse('Password reset link is invalid or has expired.')
+            hashed_password = make_password(request_data['new_password'])
+            user.password = hashed_password
+            user.save()
+
+            # Return a JsonResponse with the same structure as the try block
+            return JsonResponse({'success': True})
+        except (TypeError, ValueError, OverflowError, Accounts.DoesNotExist, IndexError, binascii.Error):
+            # Return a JsonResponse with the same structure as the try block
+            return JsonResponse({'error': 'Password reset link is invalid or has expired.'})
+    else:
+        return JsonResponse({'error': 'Invalid request method. Use POST for password reset confirmation.'})
+
+
+def password_reset_success(request, user_id):
+    user = Accounts.objects.get(id=user_id)
+    return render(request, 'password_reset_success.html', {'user': user})

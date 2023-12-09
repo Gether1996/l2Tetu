@@ -79,7 +79,7 @@ body {
 .small-logo-bottom-middle {
     max-width: 50px; /* Adjust the size as needed */
     height: auto;
-    position: absolute; /* Position the image */
+    position: fixed; /* Keep the image fixed in the viewport */
     bottom: 0; /* Position at the bottom */
     left: 50%; /* Start at the horizontal center */
     transform: translateX(-50%); /* Center horizontally */
@@ -151,6 +151,7 @@ body {
     padding: 10px;
     cursor: pointer;
     margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .form-group img.captcha {
@@ -395,4 +396,38 @@ a#checkout-link {
 .email-in-account-text {
     margin-left: 50px;
     color: white;
+}
+
+.homepage-container {
+    width: 600px;
+    text-align: center;
+    margin-top: 100px; /* Adjust margin-top as needed to move it to the upper-top */
+    margin-left: 50px;
+    color: white;
+    position: relative;
+    border: 5px solid #573414; /* You can adjust the border width and color as needed */
+    border-radius: 10px;
+    padding: 40px; /* Optional: Add some padding to create space between the content and the border */
+}
+
+.dl-button {
+    display: block; /* Make the buttons block elements to stack vertically */
+    margin: 10px 0; /* Add some margin for spacing between buttons */
+    padding: 10px 20px; /* Add padding to make them look like buttons */
+    background-color: #573414; /* Set a background color */
+    color: #fff; /* Set text color to white */
+    text-decoration: none; /* Remove underlines from links */
+    border-radius: 5px; /* Add rounded corners */
+}
+
+.dl-button:hover {
+    background-color: #41250b; /* Change background color on hover */
+}
+
+.alert {
+    color: red;
+}
+
+.social-links {
+    display: flex;
 }

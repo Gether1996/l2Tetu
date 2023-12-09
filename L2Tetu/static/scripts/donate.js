@@ -21,9 +21,10 @@ function calculateDollarCost(coins) {
   return totalDollarCost;
 }
 
-function validateForm() {
+function validateAndPrepareCheckout() {
     var coins = parseFloat(document.getElementById('coins').value);
-    var dollarCost = parseFloat(document.getElementById('dollar-cost').value.replace('$', ''));
+    var dollarCostField = document.getElementById('dollar-cost');
+    var dollarCost = parseFloat(dollarCostField.value.replace('$', ''));
 
     console.log(coins);
     console.log(dollarCost);
@@ -34,15 +35,10 @@ function validateForm() {
         return false;  // Prevent form submission
     }
 
-    return true;  // Allow form submission if validation passes
-}
-
-function prepareCheckout() {
-    var coins = document.getElementById('coins').value;
-    var dollarCostField = document.getElementById('dollar-cost');
-    var dollars = dollarCostField.value.replace('$', ''); // Remove the dollar sign
-
+    // Prepare Checkout
     var checkoutLink = document.getElementById('checkout-link');
-    checkoutLink.href = 'checkout/?coins=' + coins + '&dollars=' + dollars;
+    checkoutLink.href = 'checkout/?coins=' + coins + '&dollars=' + dollarCost;
     window.location.href = checkoutLink.href;
+
+    return true;  // Allow form submission if validation passes and checkout is prepared
 }

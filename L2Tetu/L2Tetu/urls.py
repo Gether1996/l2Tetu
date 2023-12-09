@@ -20,7 +20,8 @@ from django.conf.urls.static import static
 from django.conf import settings
 from viewer.views import homepage, account, logout_view, donate, success, fail, checkout, \
     transfer_coins, custom_login, news
-from accounts.views import registration, password_reset_request, password_reset_confirm
+from accounts.views import registration, password_reset_request, password_reset_confirm, password_reset_confirm_post, \
+    password_reset_success
 
 urlpatterns = [
     path('', homepage, name='homepage'),
@@ -41,4 +42,6 @@ urlpatterns = [
     path('captcha/', include('captcha.urls')),
     path('password_reset_request/', password_reset_request, name='password_reset_request'),
     path('reset/<str:token>/', password_reset_confirm, name='password_reset_confirm'),
+    path('password_reset_confirm_post/', password_reset_confirm_post, name='password_reset_confirm_post'),
+    path('password_reset_success/<str:user_id>/', password_reset_success, name='password_reset_success'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -18,7 +18,7 @@ class Accounts(Model):
     allow_ip = CharField(max_length=255, default="")
     allow_hwid = CharField(max_length=255, default="")
     points = IntegerField(default=0)
-    phone_nubmer = BigIntegerField(default=0)
+    phone_number = BigIntegerField(default=0)
     is_staff = BooleanField(default=False)
     is_active = BooleanField(default=True)
 
@@ -40,5 +40,5 @@ class Accounts(Model):
     def generate_reset_token(self):
         # Customize this method according to your Accounts model
         uid = urlsafe_base64_encode(force_bytes(self.pk))
-        token = f'{uid}-{self.email}'  # You can customize this token generation based on your model's data
+        token = f'{uid}'  # You can customize this token generation based on your model's data
         return token

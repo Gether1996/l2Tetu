@@ -166,3 +166,10 @@ CSRF_TRUSTED_ORIGINS = [
     'https://subdomain.example.com',
     # Add other trusted origins as needed
 ]
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'gether1996@gmail.com'  # Your Gmail address
+EMAIL_HOST_PASSWORD = 'dkko unek tkri esux'  # Use the app password you generated

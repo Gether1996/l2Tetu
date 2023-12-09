@@ -38,12 +38,27 @@
     </div>
 
     <button type="submit" class="login-register-confirm-button">Sign up</button>
-    {% if messages %}
-      <ul class="messages">
-      {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-      {% endfor %}
-      </ul>
+
+    <div>
+      Password may contain <br> maximum of 16 characters.
+    </div>
+
+    {% if form.errors %}
+      <div class="alert alert-danger">
+        <strong>Error(s):</strong>
+        <ul>
+          {% for field, errors in form.errors.items %}
+            {% for error in errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+    {% if error_message %}
+      <div class="alert alert-danger">
+        <strong>Error:</strong> {{ error_message }}
+      </div>
     {% endif %}
   </form>
 </div>
